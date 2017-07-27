@@ -1,0 +1,98 @@
+.link_table {
+    color: #808080;
+    font-weight: bold;
+    z-index: 1;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    font-size: 18px;
+}
+
+.link_table a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1 {
+    font-family: 'Bitter', sans-serif;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl-header {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tbl-content {
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
+    padding: 15px 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    background: #0B7189;
+    color: #f6f3f7;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 16px;
+    background: #f6f3f7;
+    border-bottom: rgba(0, 0, 0, .35) 1px solid;
+}
+
+td:first-child, th:first-child {
+    width: 70%;
+    border-right: rgba(0, 0, 0, .35) 1px solid;
+}
+
+th:first-child {
+    border-right: 0;
+}
+
+th:last-child {
+    padding-left: 0;
+}
+
+.logo_img {
+    max-width: 100px;
+    margin: 0 5px;
+    vertical-align: middle;
+    padding: 5px;
+    border: 1px solid lightgray;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    height: 100%;
+    vertical-align: baseline;
+    cursor: default;
+    background: #d3d3d3;
+    background-attachment: fixed;
+}
+
+section {
+    margin: 20px 50px;
+}
