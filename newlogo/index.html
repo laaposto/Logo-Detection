@@ -37,9 +37,16 @@
         </div>
         <span id="error_wiki">Wiki URL is missing!</span>
 
+        <div class="input-field" style="margin: 20px auto 50px;">
+            <input id="logo_url" class="user_input" type="text" autocomplete="off">
+            <label for="logo_url">Logo URL</label>
+        </div>
+
+        <p><strong>OR</strong></p>
+
         <form action="../upload.php" method="post" enctype="multipart/form-data" id="upload">
             <input type="file" name="fileToUpload" id="fileToUpload" class="file_upload"/>
-            <label for="fileToUpload"><span>Upload an image</span></label>
+            <label for="fileToUpload"><span>Upload an image from computer</span></label>
             <input type="submit" value="Submit" id="submit" name="submit" class="btn">
             <span id="error_photo">File is not an Image</span>
         </form>

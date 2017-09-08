@@ -16,6 +16,16 @@ $('#logo_wiki').on('input', function (e) {
     $('#error_wiki').slideUp();
     $('#logo_wiki').removeClass('error_input');
 });
+$('#logo_url').on('input', function (e) {
+    if ($(this).val() !== "") {
+        $('.file_upload + label').css({opacity: 0.3, cursor: 'default'});
+        $('#fileToUpload').attr("disabled", "disabled");
+    }
+    else {
+        $('.file_upload + label').css({opacity: 1, cursor: 'pointer'});
+        $('#fileToUpload').removeAttr("disabled");
+    }
+});
 $("#upload").submit(function (e) {
     $('#upload_fail,#upload_done').slideUp();
     var filled = true;
@@ -30,7 +40,7 @@ $("#upload").submit(function (e) {
         $('#logo_wiki').addClass('error_input');
         filled = false;
     }
-    if (filled) {
+    if ((filled) && ($('#logo_url').val() === "")) {
         var formData = new FormData($(this)[0]);
         $.ajax({
             url: "../upload.php",
@@ -49,13 +59,16 @@ $("#upload").submit(function (e) {
                 }
                 else {
                     $('#error_photo').slideUp();
-                    submit_logo("http://logos.iti.gr/newlogo/uploads/" + msg, $('#logo_name').val(), $('#logo_wiki').val());
+                    submit_logo("http://logos.iti.gr/uploads/" + msg, $('#logo_name').val(), $('#logo_wiki').val());
                 }
             },
             cache: false,
             contentType: false,
             processData: false
         });
+    }
+    else if (filled) {
+        submit_logo($('#logo_url').val(), $('#logo_name').val(), $('#logo_wiki').val());
     }
 });
 function submit_logo(url, name, wiki) {

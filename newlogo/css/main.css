@@ -94,7 +94,6 @@ body {
 }
 
 .file_upload + label {
-    max-width: 80%;
     font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -102,6 +101,10 @@ body {
     display: inline-block;
     overflow: hidden;
     height: 41px;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .file_upload + label {
@@ -111,7 +114,7 @@ body {
 }
 
 .file_upload + label span {
-    width: 250px;
+    width: 300px;
     min-height: 2em;
     display: inline-block;
     text-overflow: ellipsis;
@@ -127,7 +130,6 @@ body {
 }
 
 #upload {
-    margin-top: 60px;
     padding-bottom: 10px;
 }
 
@@ -170,7 +172,7 @@ body {
 }
 
 #error_photo {
-    top: 245px;
+    top: 350px;
     text-align: center;
 }
 

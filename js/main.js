@@ -389,7 +389,7 @@ $("#upload").submit(function (e) {
                 $('#error_upload').html("Unexpected error while uploading your file").css('display', 'block');
             }
             else {
-                parse_example_image(window.location.pathname + '/' + msg);
+                parse_example_image("http://logos.iti.gr/uploads/" + msg);
             }
         },
         cache: false,
