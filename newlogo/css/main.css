@@ -319,3 +319,21 @@ body {
     width: 16px;
     margin-left: 10px;
 }
+
+.link_table {
+    color: #808080;
+    font-weight: bold;
+    z-index: 1;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    font-size: 18px;
+}
+
+.link_table a {
+    text-decoration: none;
+    color: inherit;
+}
+.link_table a:hover{
+    color:#AF0E09
+}

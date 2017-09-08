@@ -12,6 +12,9 @@
     text-decoration: none;
     color: inherit;
 }
+.link_table a:hover{
+    color:#AF0E09
+}
 
 h1 {
     font-family: 'Bitter', sans-serif;

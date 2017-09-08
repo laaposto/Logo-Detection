@@ -390,6 +390,9 @@ ul li {
     text-decoration: none;
     color: inherit;
 }
+.back_examples a:hover,.link_table a:hover{
+    color:#AF0E09
+}
 
 #tiles {
     list-style-type: none;
