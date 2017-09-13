@@ -124,6 +124,7 @@ function load_image_logos() {
                         }
                     }
                     if (i === 0) {
+                        $('#user_image').attr('src',image_detect).show();
                         $('#loading').hide();
                         $('#progress_text,#empty').show();
                         $('#progress').html('100%');
@@ -131,6 +132,7 @@ function load_image_logos() {
                     }
                     else {
                         $tiles.imagesLoaded(function () {
+                            $('#user_image').remove();
                             $('#loading').hide();
                             $('#progress_text').show();
                             $('#progress').html('100%');

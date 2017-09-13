@@ -508,3 +508,9 @@ iframe {
     cursor: pointer;
 }
 
+#user_image{
+    display: none;
+    max-width: 200px;
+    border: 1px solid gray;
+    background: white;
+}
