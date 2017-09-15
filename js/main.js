@@ -1,5 +1,4 @@
 var yt_player, video_id;
-var default_sources = ["youtube.com", "youtu.be", "dailymotion.com", "dai.ly"];
 var image_detect = gup('image');
 var video_detect = gup('video');
 if (image_detect !== "") {
@@ -18,25 +17,22 @@ var calls_interval;
 function detect_image_drop(evt) {
     evt.stopPropagation();
     evt.preventDefault();
-    var imageUrl = evt.dataTransfer.getData('text');
-    if (default_sources.some(function (v) {
-            return imageUrl.indexOf(v) >= 0;
-        })) {
-        if (imageUrl.length < 300) {
-            parse_example_video(imageUrl);
-        } else {
-            $('#myModal h1').html("Oops! Something went wrong");
-            $('#myModal p').html("The provived video URL is <b>" + imageUrl.length + "</b> characters long<br/>We can not handle such big URL");
-            $('#myModal').reveal();
-        }
+    var imageUrl = evt.dataTransfer.getData('text/html');
+    if (imageUrl === "") {
+        $('#myModal h1').html("Oops! Something went wrong");
+        $('#myModal p').html("You have to drag an image from the web. Images from local disk aren't accepted!");
+        $('#myModal').reveal();
     }
     else {
-        //image_drop
-        imageUrl = evt.dataTransfer.getData('text/html');
-        if (imageUrl === "") {
-            $('#myModal h1').html("Oops! Something went wrong");
-            $('#myModal p').html("You have to drag an image from the web. Images from local disk aren't accepted!");
-            $('#myModal').reveal();
+
+        if (imageUrl.indexOf('<a href="https://www.youtube.com/watch?v=') > -1) {
+            var id = imageUrl.substring(41, 52);
+            image_detect = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+        }
+        else if (imageUrl === "") {
+            imageUrl = evt.dataTransfer.getData('text');
+            var id = imageUrl.substring(32, 43);
+            image_detect = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
         }
         else {
             if ($(imageUrl).children().length > 0) {
@@ -47,26 +43,28 @@ function detect_image_drop(evt) {
                     image_detect = $(imageUrl)[1].src;
                 }
             }
-            if (image_detect.length < 300) {
-                parse_example_image(image_detect);
-            } else {
-                $('#myModal h1').html("Oops! Something went wrong");
-                $('#myModal p').html("The provived image URL is <b>" + image_detect.length + "</b> characters long<br/>We can not handle such big URL");
-                $('#myModal').reveal();
-            }
         }
+        if (image_detect.length < 300) {
+            if (image_detect.indexOf('i.ytimg.com') > -1) {
+                if (image_detect.indexOf('vi_webp') > -1) {
+                    image_detect = image_detect.substring(0, 40) + "hqdefault.webp";
+                }
+                else {
+                    image_detect = image_detect.substring(0, 35) + "hqdefault.jpg";
+                }
+            }
+            parse_example_image(image_detect);
+        } else {
+            $('#myModal h1').html("Oops! Something went wrong");
+            $('#myModal p').html("The provived image URL is <b>" + image_detect.length + "</b> characters long<br/>We can not handle such big URL");
+            $('#myModal').reveal();
+        }
+
     }
 }
 function detect_image_text() {
     if ($("#image_detect").val() !== "") {
-        if (default_sources.some(function (v) {
-                return $("#image_detect").val().indexOf(v) >= 0;
-            })) {
-            parse_example_video($("#image_detect").val());
-        }
-        else {
-            parse_example_image($("#image_detect").val());
-        }
+        parse_input($("#image_detect").val());
     }
 }
 
@@ -89,7 +87,7 @@ function load_image_logos() {
     calls_interval = setInterval(function () {
         $.ajax({
             type: 'GET',
-            url: 'http://logos.iti.gr/fromimageurl?url=' + image_detect,
+            url: 'http://logos.iti.gr/fromimageurl?url=' + encodeURIComponent(image_detect),
             dataType: "jsonp",
             success: function (json) {
                 var percent_number_step = $.animateNumber.numberStepFactories.append(' %');
@@ -124,7 +122,7 @@ function load_image_logos() {
                         }
                     }
                     if (i === 0) {
-                        $('#user_image').attr('src',image_detect).show();
+                        $('#user_image').attr('src', image_detect).show();
                         $('#loading').hide();
                         $('#progress_text,#empty').show();
                         $('#progress').html('100%');
@@ -236,7 +234,7 @@ function load_video_logos() {
         calls_interval = setInterval(function () {
             $.ajax({
                 type: 'GET',
-                url: 'http://logos.iti.gr/fromvideourl?url=' + video_detect,
+                url: 'http://logos.iti.gr/fromvideourl?url=' + encodeURIComponent(video_detect),
                 dataType: 'jsonp',//jsonp
                 success: function (json) {
                     var percent_number_step = $.animateNumber.numberStepFactories.append(' %');
@@ -488,4 +486,28 @@ function parse_example_image(url) {
 }
 function parse_example_video(url) {
     window.location.href = "?video=" + url;
+}
+function parse_input(url){
+    $('#loading').show();
+    $('hr,.examples,.title_example,#main,#main_video').hide();
+    $.ajax({
+        type: 'GET',
+        url: 'http://logos.iti.gr/fromurl?url=' + encodeURIComponent(url),
+        dataType: "jsonp",
+        success: function (json) {
+            if(json.format==="video"){
+                window.location.href = "?video=" + url;
+            }
+            else{
+                window.location.href = "?image=" + url;
+            }
+        },
+        error: function () {
+            $('#loading').hide();
+            $('#progress_text').show();
+            $('#progress').html('100%');
+            $('#status').html('ERROR');
+        },
+        async: true
+    });
 }
