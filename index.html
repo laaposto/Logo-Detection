@@ -19,6 +19,7 @@
 
 </head>
 <body>
+
 <div id="myModal" class="reveal-modal">
     <h1></h1>
 
@@ -28,6 +29,7 @@
 <p class="link_table"><a href="/table">Show List of Known Logos</a> | <a href="/newlogo">Submit New Logo</a></p>
 
 <div id="wrapper_input">
+
     <h1>Image and video logo detector</h1>
 
     <p class="desc">In UGC video verification, one potential important piece of information is
@@ -51,7 +53,8 @@
 
         <ul class="input_box">
             <li>
-                <input id="image_detect" type="text" placeholder="Copy a URL or Drag &amp; drop an image or a video from the web"
+                <input id="image_detect" type="text"
+                       placeholder="Copy a URL or Drag &amp; drop an image or a video from the web"
                        ondrop="detect_image_drop(event);" ondragover="return false;">
                 <button type="button" onclick="detect_image_text();return false;" class="btn">
                     Detect
@@ -65,7 +68,7 @@
                    style="position: relative;top: -14px;left: -1px;">
             <span id="error_upload"></span>
         </form>
-        <div id="video_error">Select a video from Youtube</div>
+        <div id="video_error">Not supported Video!</div>
         <p class="examples">or have a look at some explanatory examples below</p>
 
         <p class="back_examples"><a href="index.html">Back to examples</a></p>
@@ -73,6 +76,7 @@
 </div>
 <div id="progress_text">
     <img id="user_image" src="#">
+
     <p id="original_desc">Status: <span id="status">DONE</span><br>Progress: <span
             id="progress">0 %</span></p>
 </div>
@@ -102,6 +106,7 @@
     <img id="loadimg" src="imgs/loading.gif" alt="loading.."/>
 </div>
 <!-- JS -->
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://api.dmcdn.net/all.js"></script>
 <script src="js/ajax_abort.js"></script>

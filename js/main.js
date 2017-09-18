@@ -221,6 +221,23 @@ function load_video_logos() {
             }
         });
     }
+    else if ((video_detect.indexOf("facebook.com") !== -1) || (video_detect.indexOf("fb.me") !== -1)) {
+        $('#yt_player').append('<iframe width="510" height="305" frameborder="0" src="https://www.facebook.com/v2.3/plugins/video.php?allowfullscreen=true&autoplay=false&container_width=510&height=305&href=' + video_detect + '&locale=en_US&sdk=joey"></iframe>');
+    }
+    else if (video_detect.indexOf("dropbox.com") !== -1) {
+        $('#yt_player').append('<video width="510" height="305" controls="controls"><source src="' + video_detect.replace(/\?.*/, '') + '?dl=1" type="video/mp4" /></video>');
+    }
+    else if (video_detect.indexOf("twitter.com") !== -1) {
+        $('#yt_player').css({'width': '500px'});
+        twttr.widgets.createVideo(video_detect.split("/").pop(), document.getElementById("yt_player"),
+            {
+                width: 510,
+                align: 'center'
+            })
+            .then(function () {
+
+            });
+    }
     else {
         error_video = true;
     }
@@ -438,20 +455,20 @@ function onYouTubePlayerAPIReady() {
 }
 function load_examples_image() {
     var $tiles_images_examples = $('#tiles_images_examples');
-    $tiles_images_examples.append('<li><img src="https://i.ytimg.com/vi/-NUPT3-pWhY/hqdefault.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;https://i.ytimg.com/vi/-NUPT3-pWhY/hqdefault.jpg&quot;)"></li>');
     $tiles_images_examples.append('<li><img src="http://wpmedia.o.canada.com/2013/08/faith-goldy.png?w=660" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;http://wpmedia.o.canada.com/2013/08/faith-goldy.png?w=660&quot;)"></li>');
     $tiles_images_examples.append('<li><img src="http://p2.img.cctvpic.com/program//dialogue/20110401/images/1301709911576_1301709911576_r.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;http://p2.img.cctvpic.com/program//dialogue/20110401/images/1301709911576_1301709911576_r.jpg&quot;)"></li>');
-    $tiles_images_examples.append('<li><img src="https://i.ytimg.com/vi/v2pEiiSv004/maxresdefault.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;https://i.ytimg.com/vi/v2pEiiSv004/maxresdefault.jpg&quot;)"></li>');
     $tiles_images_examples.append('<li><img src="http://www.livenewson.com/wp-content/uploads/2015/02/I24-News-640x352.png" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;http://www.livenewson.com/wp-content/uploads/2015/02/I24-News-640x352.png&quot;)"></li>');
-    $tiles_images_examples.append('<li><img src="https://pbs.twimg.com/media/Cs4wuExWAAIF--p.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;https://pbs.twimg.com/media/Cs4wuExWAAIF--p.jpg&quot;)"></li>');
+    $tiles_images_examples.append('<li><img src="http://www.arabi21.com/Content/Upload/large/120163142712605.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;http://www.arabi21.com/Content/Upload/large/120163142712605.jpg&quot;)"></li>');
+    $tiles_images_examples.append('<li><img src="https://i.ytimg.com/vi/Kj4uf6y_rFk/maxresdefault.jpg" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;https://i.ytimg.com/vi/Kj4uf6y_rFk/maxresdefault.jpg&quot;)"></li>');
+    $tiles_images_examples.append('<li><img src="https://www.alsouria.net/sites/default/files/styles/img590x350/public/field/image/12800174_237058569963498_4650028653588098231_n.jpg?itok=7r95SVsM" width="325" onerror="imgError1(this);" onclick="parse_example_image(&quot;https://www.alsouria.net/sites/default/files/styles/img590x350/public/field/image/12800174_237058569963498_4650028653588098231_n.jpg?itok=7r95SVsM&quot;)"></li>');
 
     var $tiles_video_examples = $('#tiles_video_examples');
+    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/od1woiBqLcM"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=od1woiBqLcM&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
+    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/cu8KAcmgS8I"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=cu8KAcmgS8I&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
+    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/cu8KAcmgS8I"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=cu8KAcmgS8I&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
+    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/u3Fh8Afn0fw"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=u3Fh8Afn0fw&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
     $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/btQ7zZ3cyuw"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=btQ7zZ3cyuw&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
-    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/8EWbFzHwuKg"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=8EWbFzHwuKg&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
-    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/K4kgL_11fIo"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=K4kgL_11fIo&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
     $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/CSC9DKvyIW4"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=CSC9DKvyIW4&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
-    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/qhBm8dgZEy0"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=qhBm8dgZEy0&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
-    $tiles_video_examples.append('<li style="width: 360px"> <div class="video"><img src="imgs/youtube-placeholder.jpg"><iframe width="360" height="305" frameborder="0" src="https://www.youtube.com/embed/DGTqjMNvWz0"></iframe><button type="button" style="margin:10px 0;" onclick="parse_example_video(&quot;https://www.youtube.com/watch?v=DGTqjMNvWz0&quot;);return false;" class="btn btn_small">Detect</button></div></li>');
 
     loadimage();
 }
@@ -487,7 +504,7 @@ function parse_example_image(url) {
 function parse_example_video(url) {
     window.location.href = "?video=" + url;
 }
-function parse_input(url){
+function parse_input(url) {
     $('#loading').show();
     $('hr,.examples,.title_example,#main,#main_video').hide();
     $.ajax({
@@ -495,10 +512,10 @@ function parse_input(url){
         url: 'http://logos.iti.gr/fromurl?url=' + encodeURIComponent(url),
         dataType: "jsonp",
         success: function (json) {
-            if(json.format==="video"){
+            if (json.format === "video") {
                 window.location.href = "?video=" + url;
             }
-            else{
+            else {
                 window.location.href = "?image=" + url;
             }
         },

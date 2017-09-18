@@ -390,8 +390,9 @@ ul li {
     text-decoration: none;
     color: inherit;
 }
-.back_examples a:hover,.link_table a:hover{
-    color:#AF0E09
+
+.back_examples a:hover, .link_table a:hover {
+    color: #AF0E09
 }
 
 #tiles {
@@ -508,9 +509,13 @@ iframe {
     cursor: pointer;
 }
 
-#user_image{
+#user_image {
     display: none;
     max-width: 200px;
     border: 1px solid gray;
     background: white;
+}
+
+.twitter-video-rendered {
+    margin: 0 !important;
 }
